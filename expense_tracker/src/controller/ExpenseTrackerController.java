@@ -53,6 +53,7 @@ public class ExpenseTrackerController {
     // Setting selected transactions to green
     view.setSelectedTransactionIndexes(selectedTransactionIndexes);
     view.setupCategoryColumnRenderer();
+    refresh();
     return true;
     }
 
