@@ -3,7 +3,7 @@ package controller;
 import view.ExpenseTrackerView;
 
 import java.util.List;
-
+import java.util.ArrayList;
 
 
 import model.ExpenseTrackerModel;
@@ -44,6 +44,18 @@ public class ExpenseTrackerController {
     refresh();
     return true;
   }
+
+
+  // Adding a filter method to be used by FilterStrategy interface 
+  public boolean filter(FilterStrategy filterStrategy) {
+    List<Transaction> allTransactions = model.getTransactions();
+    ArrayList<Integer> selectedTransactionIndexes = filterStrategy.filter(allTransactions);
+    // Setting selected transactions to green
+    view.setSelectedTransactionIndexes(selectedTransactionIndexes);
+    view.setupCategoryColumnRenderer();
+    return true;
+    }
+
   
-  // Other controller methods
+  // Other controller methods 
 }
