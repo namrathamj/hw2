@@ -40,19 +40,24 @@ public class ExpenseTrackerApp {
     view.getAddFilterBtn().addActionListener(e -> {
       // get amount to filter with 
       double filter_amt_input = view.getFilterAmountInput();
-
-    FilterStrategy amountFilterStrategy = new FilterByAmount(filter_amt_input);
-    boolean filteredamt = controller.filter(amountFilterStrategy);
+      FilterStrategy amountFilterStrategy = new FilterByAmount(filter_amt_input);
+      boolean filteredamt = controller.filter(amountFilterStrategy);
+      if (!filteredamt){
+        JOptionPane.showMessageDialog(view, "Invalid amount or category entered");
+        view.toFront(); }   
     });
 
    //Handler for Filter by Category
    view.getAddFilterBtnCat().addActionListener(e -> {
-      // get category to filter with 
-      String category_filter = view.getFilterChoices();
+     // get category to filter with 
+     String category_filter = view.getFilterChoices();
+     FilterStrategy categoryFilterStrategy = new FilterByCategory(category_filter);
+     boolean filteredcat = controller.filter(categoryFilterStrategy);
+     if (!filteredcat){
+        JOptionPane.showMessageDialog(view, "Invalid amount or category entered");
+        view.toFront();}
+      });
 
-    FilterStrategy categoryFilterStrategy = new FilterByCategory(category_filter);
-    boolean filteredcat = controller.filter(categoryFilterStrategy);
-    });
  
   } 
 }

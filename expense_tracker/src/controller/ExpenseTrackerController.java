@@ -1,10 +1,10 @@
 package controller;
-
+import javax.swing.JOptionPane;
 import view.ExpenseTrackerView;
 
 import java.util.List;
 import java.util.ArrayList;
-
+import view.ExpenseTrackerView;
 
 import model.ExpenseTrackerModel;
 import model.Transaction;
@@ -50,6 +50,14 @@ public class ExpenseTrackerController {
   public boolean filter(FilterStrategy filterStrategy) {
     List<Transaction> allTransactions = model.getTransactions();
     ArrayList<Integer> selectedTransactionIndexes = filterStrategy.filter(allTransactions);
+   // double filter_amt_input = view.getFilterAmountInput();  
+   
+   // String category_filter = view.getFilterChoices(); 
+     
+    if (selectedTransactionIndexes == null){ 
+      refresh();
+      return false;
+    }
     // Setting selected transactions to green
     view.setSelectedTransactionIndexes(selectedTransactionIndexes);
     view.setupCategoryColumnRenderer();
